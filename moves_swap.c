@@ -5,13 +5,13 @@ static void	swap(t_node **head)
 	int	len;
 
 	len = stack_len(*head);
-	if (*head == NULL || head == NULL || len == 1)
+	if (!*head || !(*head)->next)
 		return ;
 	*head = (*head)->next;
 	(*head)->prev->prev = *head;
 	(*head)->prev->next = (*head)->next;
 	if ((*head)->next)
-		(*head)->next->prev = (head)->prev;
+		(*head)->next->prev = (*head)->prev;
 	(*head)->next = (*head)->prev;
 	(*head)->prev = NULL;
 }

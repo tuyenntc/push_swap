@@ -5,17 +5,15 @@
 static void	rotate(t_node **stack)
 {
 	t_node	*last_node;
-	int		len;
 
-	len = stack_len(*stack);
-	if (*stack == NULL || stack == NULL || len == 1)
+	if (!*stack || !(*stack)->next)
 		return ;
 	last_node = find_last_node(*stack);
 	last_node->next = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
 	last_node->next->prev = last_node;
-	last_node->next = NULL;
+	last_node->next->next = NULL;
 }
 
 void	ra(t_node **a, bool checker)

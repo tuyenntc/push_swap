@@ -5,7 +5,7 @@
 * how many words are there in the input string?
 * allocate memory for the required space + null terminator
 * copy the substring/ each word inside the whole string
-* split into and array of string to hold each single word
+* split into an array of string to hold each single word
 *
 **********************************************************************************************************************/
 
@@ -47,7 +47,7 @@ int main(void)
 }
 */
 
-
+/*
 static char	*get_substr(char *s, char c)
 {
 	char	*substr;
@@ -74,6 +74,35 @@ static char	*get_substr(char *s, char c)
 	return (substr);
 }
 
+*/
+static char	*get_substr(char *s, char c)
+{
+	int	len;
+	int	i;
+	char	*start;
+	char	*substr;
+
+	len = 0;
+	i = 0;
+	start = s;
+	substr = NULL;
+	while (*s && *s != c)
+	{
+		++len;
+		++s;
+	}
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (NULL);
+	while (i < len)
+	{
+		substr[i] = start[i];
+		++i;
+	}
+	substr[len] = '\0';
+	return (substr);
+
+}
 /*
 int main(void)
 {
@@ -129,7 +158,7 @@ char	**split(char *input, char c)
 	return (result);
 }
 
-/*
+
 int main(void)
 {
 	char	input[] = "this,is,a,test,string";
@@ -150,6 +179,5 @@ int main(void)
 		printf("errors spliting text string\n");
 	return (0);
 }
-*/
 
 
