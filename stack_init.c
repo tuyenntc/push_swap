@@ -39,43 +39,41 @@ void	stack_init(t_node **a, char **av)
 	i = 0;
 	while (av[i])
 	{
-		if (error_syntax(av[i]))
-			error_free(a);
+		if (syntax_error(av[i]))
+			free_error(a);
 		nbr = ft_atol(av[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a);
-		if (error_duplicate(*a, (int)nbr))
-			error_free(a);
-		append_node(a, (int)nbr);
+			free_error(a);
+		if (duplicate_error(*a, (int)nbr))
+			free_error(a);
+		insert_end(a, (int)nbr);
 		i++;
 	}
-	if (flag_ac_2)
-		free_matrix(av);
-i}
+}
 
 
-static void	append_node(t_node **stack, int n)
+static void	insert_end(t_node **stack, int n)
 {
-	t_node	*new_node;
-	t_node	*last_node;
+	t_node	*new;
+	t_node	*last;
 
 	if (!stack)
 		return ;
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return (NULL);
-	new_node->next = NULL;
-	new_node->nbr = n;
+	new = malloc(sizeof(t_node));
+	if (!new)
+		return;
+	new->next = NULL;
+	new->nbr = n;
 	if (!(*stack))
 	{
-		*stack = new_node;
-		new_node->prev = NULL;
+		*stack = new;
+		new->prev = NULL;
 	}
 	else
 	{
-		last_node = find_last(*stack);
-		last_node->next = new_node;
-		new_node->prev = last_node;
+		last = find_last(*stack);
+		last->next = new;
+		new->prev = last;
 	}
 }
 

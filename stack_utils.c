@@ -1,27 +1,46 @@
 #include "push_swap.h"
 
-int	stack_len(t_node *stack)
+
+//traverse through a linked list/stack
+int	stack_len(t_node *head)
+{
+	int	count;
+	t_node	*current;
+
+	count = 0;
+	current = head;
+	if (!head)
+		return (0);
+	while (head)
+	{
+		count++;
+		current = current->next;
+	}
+	return (count);
+}
+/*
+int	length(t_node *stack)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!stack)
 		return (0);
 	while (stack)
 	{
-		stack = stack->next;
 		i++;
+		stack = stack->next;
 	}
 	return (i);
 }
-
+*/
 bool	stack_sorted(t_node *stack)
 {
 	if (!stack)
 		return (1);
 	while (stack->next)
 	{
-		if (stack->nbr >stack->next->nbr)
+		if (stack->nbr > stack->next->nbr)
 			return (false);
 		stack = stack->next;
 	}

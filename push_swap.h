@@ -6,50 +6,62 @@
 # include <stdbool.h>
 # include <unistd.h>
 
-typedef struct s_stack_node
+typedef struct s_node
 {
 	int		nbr;
 	int		index;
 	int		push_cost;
 	bool	above_median;
 	bool	cheapest;
-	struct	s_stack_node	*target_node;
-	struct	s_stack_node	*next;
-	struct	s_stack_node	*prev;
+	struct	s_node	*target_node;
+	struct	s_node	*next;
+	struct	s_node	*prev;
 }	t_node;
 
 //handle input
-char	**split(char *s, char c);
+char	**split(char *input, char c);
 
-//handle errors
-void	free_matrix(char **av);
-void	error_free(t_node **a, char **av, bool flag_ac_2);
+// errors
+void	deallocate(t_node **head, t_node **tail);
 void	free_stack(t_node **stack);
-int		error_repetition(t_node *a, int nbr);
-int		error_syntax(char *str_nbr);
+void	free_error(t_node **a);
+int		syntax_error(char *s);
+int		duplicate_error(t_node *a, int number);
+
 
 //initiate stack
-void	stack_init(t_node **a, char **av, bool flag_ac_2);
-void	node_inits(t_node *a, t_node *b);
-void	set_current_position(t_node *stack);
-void	set_price(t_node *a, t_node *b);
-void	set_cheapest(t_node *b);
+static long	ft_atol(const char *s);
+void		stack_init(t_node **a, char **av);
+static void	insert_end(t_node **stack, int value);
+t_node		*get_cheapest(t_node *stack);
+void	prep_for_push(t_node **stack, t_node *top, char	stack_name);
+//init_a_to_b
+void	current_index(t_node *stack);
+static void	set_target_a(t_node *a, t_node *b);
+static void	cost_analysis_a(t_node *a, t_node *b);
+void	set_cheapest(t_node *stack);
+void	init_nodes_a(t_node *a, t_node *b);
+
+//init_b_to_a
+static void	set_target_b(t_node *a, t_node *b);
+void	init_nodes_b(t_node *a, t_node *b);
 
 //utils_linked list
-void			append_node(t_node **stack, int n);
-t_node	*find_last_node(t_node *head);
-t_node	*find_smallest(t_node *stack);
-t_node	*return_cheapest(t_node *stack);
-bool			stack_sorted(t_node *stack);
-int				stack_len(t_node *stack);
-void			finish_rotation(t_node *ss, t_node *n, char c);
+int	stack_len(t_node *head);
+bool	stack_sorted(t_node *stack);
+t_node	*find_last(t_node *stack);
+t_node	*find_max(t_node *stack);
+t_node	*find_min(t_node *stack);
 
-//chunk sorting
-void	tiny_sort(t_node **a);
-void	sort_five(t_node **a, t_node **b);
-void	push_swap(t_node **a, t_node **b);
+//sorting
+void	sort_three(t_node **a);
+static void	rotate_both(t_node **a, t_node **b, t_node *cheapest);
+static void	rev_rot_both(t_node **a, t_node **b, t_node *cheapest);
+static void move_a_to_b(t_node **a, t_node **b);
+static void	move_b_to_a(t_node **a, t_node **b);
+static void	min_on_top(t_node **a);
 
-//moves/ actions:
+//moves:
 void	sa(t_node **a, bool checker);
 void	sb(t_node **b, bool checker);
 void	ss(t_node **a, t_node **b, bool checker);

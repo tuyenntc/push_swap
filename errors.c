@@ -43,7 +43,7 @@ void	free_error(t_node **a)
 
 int	syntax_error(char *s)
 {
-	if (!(*s) == '+' || *s == '-' || (*s >= '0' && *s <= '9'))
+	if (!(*s == '+' || *s == '-' || (*s >= '0' && *s <= '9')))
 		return (1);
 	if ((*s == '+' || *s == '-') && !(s[1] >= '0' && s[1] <= '9'))
 		return (1);

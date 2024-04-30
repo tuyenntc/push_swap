@@ -26,7 +26,7 @@ int main(int ac, char **av)
 		else if (stack_len(a) == 3)
 			sort_three(&a);
 		else
-			sort_stack(&a, &b);
+			sort_stacks(&a, &b);
 	}
 	free_stack(&a);
 	return (0);

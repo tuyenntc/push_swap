@@ -8,7 +8,7 @@ static void	reverse_rotate(t_node **stack)
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	last = find_last_node(*stack);
+	last = find_last(*stack);
 	last->prev->next = NULL;
 	last->next = *stack;
 	last->prev = NULL;
@@ -23,7 +23,7 @@ void	rra(t_node **a, bool checker)
 		write(1, "rra\n", 4);
 }
 
-void	rrb(t_node **b, c=bool checker)
+void	rrb(t_node **b, bool checker)
 {
 	reverse_rotate(b);
 	if (!checker)

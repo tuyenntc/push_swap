@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	set_atrget_b(t_node *a, t_node *b)
+static void	set_target_b(t_node *a, t_node *b)
 {
 	t_node	*current_a;
 	t_node	*target_node;
@@ -28,7 +28,7 @@ static void	set_atrget_b(t_node *a, t_node *b)
 
 void	init_nodes_b(t_node *a, t_node *b)
 {
-	curent_index(a);
+	current_index(a);
 	current_index(b);
 	set_target_b(a, b);
 }

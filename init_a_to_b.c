@@ -12,7 +12,7 @@ void	current_index(t_node *stack)
 	while (stack)
 	{
 		stack->index = i;
-		if (i <= meadian)
+		if (i <= median)
 			stack->above_median = true;
 		else
 			stack->above_median = false;
@@ -29,7 +29,7 @@ static void	set_target_a(t_node *a, t_node *b)
 	while (a)
 	{
 		best_match_index = LONG_MIN;
-		curent_b = b;
+		current_b = b;
 		while (current_b)
 		{
 			if (current_b->nbr < a->nbr && current_b->nbr > best_match_index)
@@ -45,7 +45,6 @@ static void	set_target_a(t_node *a, t_node *b)
 			a->target_node = target_node;
 		a = a->next;
 	}
-
 }
 
 static void	cost_analysis_a(t_node *a, t_node *b)
@@ -74,7 +73,7 @@ void	set_cheapest(t_node *stack)
 	t_node	*cheapest_node;
 	if (!stack)
 		return ;
-	cheapest_node = LONG_MAX;
+	cheapest_value = LONG_MAX;
 	while (stack)
 	{
 		if (stack->push_cost < cheapest_value)
