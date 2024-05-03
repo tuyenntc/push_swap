@@ -22,19 +22,20 @@ typedef struct s_node
 char	**split(char *input, char c);
 
 // errors
-void	deallocate(t_node **head, t_node **tail);
-void	free_stack(t_node **stack);
-void	free_error(t_node **a);
+void	free_str(char **av);
+void	deallocate(t_node **head);
+//void	free_stack(t_node **stack);
+void	free_all(t_node **a, char **av, bool flag_ac_str);
 int		syntax_error(char *s);
 int		duplicate_error(t_node *a, int number);
 
 
 //initiate stack
 static long	ft_atol(const char *s);
-void		stack_init(t_node **a, char **av);
+void		stack_init(t_node **a, char **av, bool flag_ac_str);
 static void	insert_end(t_node **stack, int value);
 t_node		*get_cheapest(t_node *stack);
-void	prep_for_push(t_node **stack, t_node *top, char	stack_name);
+void	prep_for_push(t_node **stack, t_node *top_node, char stack_name);
 //init_a_to_b
 void	current_index(t_node *stack);
 static void	set_target_a(t_node *a, t_node *b);
@@ -55,6 +56,7 @@ t_node	*find_min(t_node *stack);
 
 //sorting
 void	sort_three(t_node **a);
+void	sort_stacks(t_node **a, t_node **b);
 static void	rotate_both(t_node **a, t_node **b, t_node *cheapest);
 static void	rev_rot_both(t_node **a, t_node **b, t_node *cheapest);
 static void move_a_to_b(t_node **a, t_node **b);

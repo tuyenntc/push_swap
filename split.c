@@ -13,27 +13,26 @@
 //"hi how are you"==> hi / how / are / you /0
 static int	count_word(char *s, char c)
 {
-	int		i;
+	int		count;
 	bool	inside_word;
 
-	i = 0;
-	inside_word = false;
+	count = 0;
 	while (*s)
 	{
-		while (*s == c && *s)
+		inside_word = false;
+		while (*s == c)
 			++s;
 		while (*s != c && *s)
 		{
 			if (!inside_word)
 			{
-				++i;
+				++count;
 				inside_word = true;
 			}
 			++s;
 		}
-		inside_word = false;
 	}
-	return (i);
+	return (count);
 }
 
 /*
@@ -47,34 +46,6 @@ int main(void)
 }
 */
 
-/*
-static char	*get_substr(char *s, char c)
-{
-	char	*substr;
-	int		len;
-	int		i;
-
-	i = 0;
-	len = 0;
-	while (s[len] && s[len] != c)
-		++len;
-	substr = (char *)malloc(sizeof(char) * (len + 1));
-	if (substr == NULL)
-		return (NULL);
-	while (i < len)
-	{
-		substr[i] = s[i];
-		++i;
-	}
-	substr[i] = '\0';
-	while (*s && *s != c)
-		++s;
-	while (*s && *s == c)
-		++s;
-	return (substr);
-}
-
-*/
 static char	*get_substr(char *s, char c)
 {
 	int	len;
@@ -91,7 +62,7 @@ static char	*get_substr(char *s, char c)
 		++len;
 		++s;
 	}
-	substr = (char *)malloc(sizeof(char) * (len + 1));
+	substr = malloc(sizeof(char) * (len + 1));
 	if (!substr)
 		return (NULL);
 	while (i < len)
@@ -132,7 +103,7 @@ char	**split(char *input, char c)
 	size = count_word(input, c);
 	if (size == 0)
 		return (NULL);
-	result = (char **)malloc(sizeof(char *) * (size + 1));
+	result = malloc(sizeof(char *) * (size + 2));
 	if (result == NULL)
 		return (NULL);
 	while (*input && i < size)
@@ -157,12 +128,11 @@ char	**split(char *input, char c)
 	result[i] = NULL;
 	return (result);
 }
-
-
+/*
 int main(void)
 {
-	char	input[] = "this,is,a,test,string";
-	char	c = ',';
+	char	input[] = "12 6 33";
+	char	c = ' ';
 	int		i = 0;
 	char	**word_arr = split(input, c);
 	if (word_arr)
@@ -179,5 +149,4 @@ int main(void)
 		printf("errors spliting text string\n");
 	return (0);
 }
-
-
+*/

@@ -15,7 +15,20 @@ static void	reverse_rotate(t_node **stack)
 	*stack = last;
 	last->next->prev = last;
 }
-
+/*
+void	reverse_rotate(t_node **head)
+{
+	if (*head == NULL || (*head)->next == NULL)
+		return;
+	t_node	*last = *head;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = (*head);
+	(*head)->prev = last;
+	last->prev->next = NULL;
+	*head = last;
+}
+*/
 void	rra(t_node **a, bool checker)
 {
 	reverse_rotate(a);

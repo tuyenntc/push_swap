@@ -12,6 +12,23 @@ static void	swap(t_node **head)
 	(*head)->next = (*head)->prev;
 	(*head)->prev = NULL;
 }
+/*
+
+{
+	if (*head == NULL || (*head)->next == NULL)
+		return ;
+	t_node	*first = *head;
+	t_node	*second = first->next;
+
+	first->next = second->next;
+	first->prev = second;
+	if (second->next != NULL)
+		second->next = first;
+	second->prev = NULL;
+	first->next->prev = second->prev;
+	*head = second;
+}
+*/
 
 void	sa(t_node **a, bool checker)
 {

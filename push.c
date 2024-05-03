@@ -1,8 +1,6 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-static void push(t_node **dst, t_node **src);
-
 //push a node to the top from src to dst (from stack a-> b OR from stack b -> a) - if stack is empty (NULL)?
 
 /*
@@ -11,24 +9,24 @@ static void push(t_node **dst, t_node **src);
 
 static void	push(t_node **dst, t_node **src)
 {
-	t_node	*new_node;
+	t_node	*new;
 	if (!*src)
 		return ;
-	new_node = *src;
+	new = *src;
 	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
-	new_node->prev = NULL;
+	new->prev = NULL;
 	if (!*dst)
 	{
-		*dst = new_node;
-		new_node->next = NULL;
+		*dst = new;
+		new->next = NULL;
 	}
 	else
 	{
-		new_node->next = *dst;
-		new_node->next->prev = new_node;
-		*dst = new_node;
+		new->next = *dst;
+		new->next->prev = new;
+		*dst = new;
 	}
 }
 

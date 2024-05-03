@@ -4,18 +4,35 @@
 
 static void	rotate(t_node **stack)
 {
-	t_node	*last_node;
+	t_node	*last;
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	last_node = find_last(*stack);
-	last_node->next = *stack;
+	last = find_last(*stack);
+	last->next = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
-	last_node->next->prev = last_node;
-	last_node->next->next = NULL;
+	last->next->prev = last;
+	last->next->next = NULL;
+}
+/*
+void	rotate(t_node **head)
+{
+	if (*head == NULL || (*head)->next == NULL)
+		return;
+	t_node	*last = *head;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = *head;
+	(*head)->prev = last;
+	*head = (*head)->next;
+	(*head)->prev = NULL;
+	last->next->next = NULL;
 }
 
+
+
+*/
 void	ra(t_node **a, bool checker)
 {
 	rotate(a);

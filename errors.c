@@ -1,7 +1,8 @@
 #include "push_swap.h"
 
 //free the whole linked list
-void	deallocate(t_node **head, t_node **tail)
+
+void	deallocate(t_node **head)
 {
 	if (*head == NULL)
 		return;
@@ -13,9 +14,21 @@ void	deallocate(t_node **head, t_node **tail)
 	}
 	free(current);
 	*head = NULL;
-	*tail = NULL;
 }
 
+
+void	free_str(char **av)
+{
+	int	i;
+	i = 0; //-1
+	if (av == NULL || *av == NULL)
+		return;
+	while (av[i])
+		free(av[i++]);
+	free(av); //av - 1
+}
+
+/*
 void	free_stack(t_node **stack)
 {
 	t_node	*tmp;
@@ -27,17 +40,18 @@ void	free_stack(t_node **stack)
 	while (current)
 	{
 		tmp = current->next;
-		current->nbr = 0;
 		free(current);
 		current = tmp;
 	}
 	*stack = NULL;
 }
-
-void	free_error(t_node **a)
+*/
+void	free_all(t_node **a, char **av, bool flag_ac_str)
 {
-	free_stack(a);
-	write(1, "error\n", 6);
+	deallocate(a);
+	if (flag_ac_str)
+		free_str(av);
+	write(2, "error\n", 6);
 	exit(1);
 }
 
