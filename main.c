@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdlib.h>
 
 
 /*****************************************************************************************************************************
@@ -26,7 +27,8 @@ int main(int ac, char **av)
 //	else if (ac == 2 && av[1] != NULL && av[1][0] != '\0')
 	else if (ac == 2)
 		av = split(av[1], ' ');
-	stack_init(&a, av + 1, ac == 2);
+	stack_init(&a, av + 1);
+	free_str(av);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)

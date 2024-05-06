@@ -11,6 +11,7 @@
 
 
 //"hi how are you"==> hi / how / are / you /0
+
 static int	count_word(char *s, char c)
 {
 	int		count;
@@ -46,51 +47,47 @@ int main(void)
 }
 */
 
-static char	*get_substr(char *s, char c)
+static char *get_substr(char *s, char c, int *cursor)
 {
 	int	len;
-	int	i;
-	char	*start;
-	char	*substr;
+	int i;
+	char *result;
 
 	len = 0;
 	i = 0;
-	start = s;
-	substr = NULL;
-	while (*s && *s != c)
-	{
+	result = NULL;
+	while (s[*cursor] == c && s[*cursor] != '\0')
+		++(*cursor);
+	while ((s[*cursor + len] != c) && (s[*cursor + len] != '\0'))
 		++len;
-		++s;
-	}
-	substr = malloc(sizeof(char) * (len + 1));
-	if (!substr)
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
 		return (NULL);
 	while (i < len)
-	{
-		substr[i] = start[i];
-		++i;
-	}
-	substr[len] = '\0';
-	return (substr);
-
+		result[i++] = s[(*cursor)++];
+	result[i] = '\0';
+	return (result);
 }
+
 /*
 int main(void)
 {
 	char	s[] = "this is a test string";
 	char	c = ' ';
+	int		cursor = 0;
 	char	*word;
-	while ((word = get_substr(s, c)) != NULL)
+	while (s[cursor] != '\0')
 	{
+		word = get_substr(s, c, &cursor);
+		if (word == NULL)
+			break;
 		printf("sub string: %s\n", word);
 		free(word);
 	}
 	return (0);
 }
 
-
 */
-
 char	**split(char *input, char c)
 {
 	int		size;
@@ -113,7 +110,7 @@ char	**split(char *input, char c)
 			++input;
 		if (!*input)
 			break;
-		result[i] = get_substr(input, c);
+		result[i] = get_substr(input, c, &position);
 		if (result[i] == NULL)
 		{
 			while (i-- >0)
@@ -128,6 +125,9 @@ char	**split(char *input, char c)
 	result[i] = NULL;
 	return (result);
 }
+
+
+
 /*
 int main(void)
 {

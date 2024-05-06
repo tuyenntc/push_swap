@@ -54,7 +54,7 @@ int main(void)
 */
 //create stack a with values from cmd input (check duplicated values, over/under flow/ syntax errors)
 
-void	stack_init(t_node **a, char **av, bool flag_ac_str)
+void	stack_init(t_node **a, char **av)
 {
 	long	nbr;
 	int		i;
@@ -63,17 +63,15 @@ void	stack_init(t_node **a, char **av, bool flag_ac_str)
 	while (av[i])
 	{
 		if (syntax_error(av[i]))
-			free_all(a, av, flag_ac_str);
+			free_all(a, av);
 		nbr = ft_atol(av[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			free_all(a, av, flag_ac_str);
+			free_all(a, av);
 		if (duplicate_error(*a, (int)nbr))
-			free_all(a, av, flag_ac_str);
+			free_all(a, av);
 		insert_end(a, (int)nbr);
 		++i;
 	}
-	if (flag_ac_str)
-		free_str(av);
 }
 
 

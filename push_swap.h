@@ -25,14 +25,14 @@ char	**split(char *input, char c);
 void	free_str(char **av);
 void	deallocate(t_node **head);
 //void	free_stack(t_node **stack);
-void	free_all(t_node **a, char **av, bool flag_ac_str);
+void	free_all(t_node **a, char **av);
 int		syntax_error(char *s);
 int		duplicate_error(t_node *a, int number);
 
 
 //initiate stack
 static long	ft_atol(const char *s);
-void		stack_init(t_node **a, char **av, bool flag_ac_str);
+void		stack_init(t_node **a, char **av);
 static void	insert_end(t_node **stack, int value);
 t_node		*get_cheapest(t_node *stack);
 void	prep_for_push(t_node **stack, t_node *top_node, char stack_name);
