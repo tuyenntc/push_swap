@@ -127,8 +127,8 @@ char	**split(char *input, char c)
 }
 
 
-
 /*
+
 int main(void)
 {
 	char	input[] = "12 6 33";

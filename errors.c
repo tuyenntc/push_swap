@@ -46,7 +46,7 @@ void	free_stack(t_node **stack)
 	*stack = NULL;
 }
 */
-void	free_all(t_node **a, char **av)
+void	free_error(t_node **a, char **av)
 {
 	deallocate(a);
 	write(2, "error\n", 6);

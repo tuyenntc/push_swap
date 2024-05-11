@@ -54,39 +54,17 @@ int main(void)
 */
 //create stack a with values from cmd input (check duplicated values, over/under flow/ syntax errors)
 
-void	stack_init(t_node **a, char **av)
-{
-	long	nbr;
-	int		i;
-
-	i = 0;
-	while (av[i])
-	{
-		if (syntax_error(av[i]))
-			free_all(a, av);
-		nbr = ft_atol(av[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN)
-			free_all(a, av);
-		if (duplicate_error(*a, (int)nbr))
-			free_all(a, av);
-		insert_end(a, (int)nbr);
-		++i;
-	}
-}
-
-
-static void	insert_end(t_node **stack, int n)
+static void	insert_end(t_node **stack, int value)
 {
 	t_node	*new;
 	t_node	*last;
-
 	if (!stack)
-		return ;
+		return;
 	new = malloc(sizeof(t_node));
 	if (!new)
 		return;
-	new->nbr = n;
 	new->next = NULL;
+	new->nbr = value;
 	if (!(*stack))
 	{
 		*stack = new;
@@ -97,6 +75,26 @@ static void	insert_end(t_node **stack, int n)
 		last = find_last(*stack);
 		last->next = new;
 		new->prev = last;
+	}
+}
+
+void	stack_init(t_node **a, char **av)
+{
+	long	nb;
+	int		i;
+
+	i = 0;
+	while (av[i])
+	{
+		if (syntax_error(av[i]))
+			free_error(a, av);
+		nb = ft_atol(av[i]);
+		if (nb > INT_MAX || nb < INT_MIN)
+			free_error(a, av);
+		if (duplicate_error(*a, (int)nb))
+			free_error(a, av);
+		insert_end(a, (int)nb);
+		++i;
 	}
 }
 
@@ -116,6 +114,7 @@ t_node	*get_cheapest(t_node *stack)
 void	prep_for_push(t_node **stack, t_node *top_node, char stack_name)
 {
 	while (*stack != top_node)
+	{
 		if (stack_name == 'a')
 		{
 			if (top_node->above_median)
@@ -130,6 +129,7 @@ void	prep_for_push(t_node **stack, t_node *top_node, char stack_name)
 			else
 				rrb(stack, false);
 		}
+	}
 }
 
 /*

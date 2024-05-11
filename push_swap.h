@@ -2,6 +2,7 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <limits.h>
 # include <stdbool.h>
 # include <unistd.h>
@@ -20,12 +21,12 @@ typedef struct s_node
 
 //handle input
 char	**split(char *input, char c);
-
+void    sort_five(t_node **a, t_node **b);
 // errors
 void	free_str(char **av);
 void	deallocate(t_node **head);
 //void	free_stack(t_node **stack);
-void	free_all(t_node **a, char **av);
+void	free_error(t_node **a, char **av);
 int		syntax_error(char *s);
 int		duplicate_error(t_node *a, int number);
 
@@ -77,7 +78,7 @@ void	rrb(t_node **b, bool checker);
 void	rrr(t_node **a, t_node **b, bool checker);
 
 void	pa(t_node **a, t_node **b, bool checker);
-void	pb(t_node **a, t_node **b, bool checker);
+void	pb(t_node **b, t_node **a, bool checker);
 
 
 

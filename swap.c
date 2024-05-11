@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
+
 static void	swap(t_node **head)
 {
 	if (!*head || !(*head)->next)
@@ -13,7 +14,7 @@ static void	swap(t_node **head)
 	(*head)->prev = NULL;
 }
 /*
-
+static void	swap(t_node **head)
 {
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
@@ -29,7 +30,6 @@ static void	swap(t_node **head)
 	*head = second;
 }
 */
-
 void	sa(t_node **a, bool checker)
 {
 	swap(a);

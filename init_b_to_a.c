@@ -1,5 +1,10 @@
 #include "push_swap.h"
+/*
+for each node in b, find a target node in a(so you know where to push): closet bigger; or the min value if there is no match
 
+
+
+*/
 static void	set_target_b(t_node *a, t_node *b)
 {
 	t_node	*current_a;
@@ -25,7 +30,10 @@ static void	set_target_b(t_node *a, t_node *b)
 		b = b->next;
 	}
 }
+/*
+prepare to push from b to a
 
+*/
 void	init_nodes_b(t_node *a, t_node *b)
 {
 	current_index(a);

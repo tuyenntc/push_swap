@@ -11,9 +11,9 @@ int	stack_len(t_node *head)
 	current = head;
 	if (!head)
 		return (0);
-	while (head)
+	while (current)
 	{
-		count++;
+		++count;
 		current = current->next;
 	}
 	return (count);

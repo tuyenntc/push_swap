@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 //reverse rotate: rotate the bottom node to the top position
-
+/*
 static void	reverse_rotate(t_node **stack)
 {
 	t_node	*last;
@@ -15,7 +15,7 @@ static void	reverse_rotate(t_node **stack)
 	*stack = last;
 	last->next->prev = last;
 }
-/*
+*/
 void	reverse_rotate(t_node **head)
 {
 	if (*head == NULL || (*head)->next == NULL)
@@ -28,7 +28,7 @@ void	reverse_rotate(t_node **head)
 	last->prev->next = NULL;
 	*head = last;
 }
-*/
+
 void	rra(t_node **a, bool checker)
 {
 	reverse_rotate(a);
